@@ -1,9 +1,15 @@
-import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+  Platform,
+  StatusBar,
+} from "react-native";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   return (
-    <View style={styles.cotainer}>
-      <Text style={styles.text}>HomeScreen</Text>
+    <View style={styles.container}>
       <Button
         color="coral"
         title="Go to Components"
@@ -25,7 +31,11 @@ const HomeScreen = ({ navigation: { navigate } }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    height: 100,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 50,
+    flex: 1,
+  },
   text: {
     fontSize: 30,
   },
