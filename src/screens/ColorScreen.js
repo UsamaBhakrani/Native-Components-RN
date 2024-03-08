@@ -1,6 +1,6 @@
 import { Button, StyleSheet, View } from "react-native";
 
-const ColorScreen = () => {
+const ColorScreen = ({red,blue,green}) => {
   return (
     <View>
       <Button title="Generate Color" onPress={() => {}} />
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   container: {
     height: 100,
     width: 100,
-    backgroundColor: `rgb(0,255,0)`,
+    backgroundColor: `rgb(${red},${blue},{green})`,
   },
 });
 
