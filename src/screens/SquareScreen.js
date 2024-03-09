@@ -1,29 +1,42 @@
 import { StyleSheet, View } from "react-native";
 import ColorCounter from "./ColorCounter";
-import { useState } from "react";
+import { useReducer } from "react";
+import colorReducer from "../reducers/colorReducer";
+import { DECREASE, INCREASE } from "../actions";
+
+const initialState = { red: 0, green: 0, blue: 0 };
 
 const SquareScreen = () => {
-  const [red, setRed] = useState(0);
-  const [green, setGreen] = useState(0);
-  const [blue, setBlue] = useState(0);
-
-  const counterIncrease = 10;
+  const [state, dispatch] = useReducer(colorReducer, initialState);
+  const { red, green, blue } = state;
 
   return (
     <View>
       <ColorCounter
-        onIncrease={() => setRed(red + counterIncrease)}
-        onDecrease={() => setRed(red - counterIncrease)}
+        onIncrease={() => {
+          dispatch({ colorToChange: "red", payload: INCREASE });
+        }}
+        onDecrease={() => {
+          dispatch({ colorToChange: "red", payload: DECREASE });
+        }}
         name="Red"
       />
       <ColorCounter
-        onIncrease={() => setGreen(green + counterIncrease)}
-        onDecrease={() => setGreen(green - counterIncrease)}
+        onIncrease={() => {
+          dispatch({ colorToChange: "green", payload: INCREASE });
+        }}
+        onDecrease={() => {
+          dispatch({ colorToChange: "green", payload: DECREASE });
+        }}
         name="Green"
       />
       <ColorCounter
-        onIncrease={() => setBlue(blue + counterIncrease)}
-        onDecrease={() => setBlue(blue - counterIncrease)}
+        onIncrease={() => {
+          dispatch({ colorToChange: "blue", payload: INCREASE });
+        }}
+        onDecrease={() => {
+          dispatch({ colorToChange: "blue", payload: DECREASE });
+        }}
         name="Blue"
       />
       <View
